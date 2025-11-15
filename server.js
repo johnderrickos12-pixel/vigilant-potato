@@ -2,78 +2,47 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-// Middleware
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(express.json()); // Enable parsing of JSON request bodies
+// Middleware to parse JSON bodies and enable CORS
+app.use(cors());
+app.use(express.json());
 
-/**
- * API endpoint to handle video generation requests.
- * The frontend will send the user's prompts and settings here.
- */
-app.post('/api/generate', (req, res) => {
-  const { prompt, negativePrompt, model, style } = req.body;
+// A pool of placeholder video URLs to make it look real
+const placeholderVideos = [
+    "https://videos.pexels.com/video-files/854341/854341-hd_1920_1080_25fps.mp4",
+    "https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4",
+    "https://videos.pexels.com/video-files/4434246/4434246-hd_1920_1080_25fps.mp4",
+    "https://videos.pexels.com/video-files/4791395/4791395-hd_1920_1080_30fps.mp4"
+];
 
-  console.log('Received generation request:');
-  console.log({ prompt, negativePrompt, model, style });
+// API endpoint for video generation
+app.post('/generate-video', (req, res) => {
+    const { mainPrompt, stylePrompt, negativePrompt } = req.body;
 
-  if (!prompt) {
-    return res.status(400).json({ success: false, message: 'Prompt is a required field.' });
-  }
+    console.log('Received generation request with prompts:');
+    console.log(`  Main: ${mainPrompt}`);
+    console.log(`  Style: ${stylePrompt}`);
+    console.log(`  Negative: ${negativePrompt}`);
 
-  // --- Placeholder for a real AI generation model ---
-  // In a real application, you would add the job to a queue (like RabbitMQ or Bull)
-  // and have a separate worker process pick it up. This is because AI generation
-  // can take a long time and would block the server.
-  const jobId = `job_${Date.now()}`;
-  console.log(`Job created with ID: ${jobId}. This would now be processed by an AI worker.`);
-  // --- End of placeholder ---
+    // Simulate the AI generation delay (e.g., 3-5 seconds)
+    const delay = Math.random() * 2000 + 3000; 
 
-  // Respond immediately to the client, telling them the job has started.
-  res.status(202).json({
-    success: true,
-    message: 'Video generation process has started.',
-    jobId: jobId,
-  });
+    setTimeout(() => {
+        // Select a random video from the placeholder pool
+        const randomVideoUrl = placeholderVideos[Math.floor(Math.random() * placeholderVideos.length)];
+        
+        console.log(`Generation complete. Sending video URL: ${randomVideoUrl}`);
+        
+        // Send back the URL of the generated video
+        res.json({ videoUrl: randomVideoUrl });
+    }, delay);
 });
 
-/**
- * API endpoint for the frontend to check the status of a generation job.
- */
-app.get('/api/status/:jobId', (req, res) => {
-    const { jobId } = req.params;
-
-    // --- Placeholder for checking job status ---
-    // In a real app, you'd query your job queue or database for the job's status.
-    // For this example, we'll just simulate a "completed" status after a short delay.
-    console.log(`Checking status for job ID: ${jobId}`);
-
-    // Simulate different statuses for demonstration
-    const randomStatus = Math.random();
-    if (randomStatus < 0.3) {
-        res.json({
-            status: 'processing',
-            progress: '33%',
-            message: 'Model is warming up...',
-        });
-    } else if (randomStatus < 0.7) {
-        res.json({
-            status: 'processing',
-            progress: '66%',
-            message: 'Rendering frames...',
-        });
-    } else {
-        res.json({
-            status: 'completed',
-            progress: '100%',
-            videoUrl: `/videos/placeholder_video_${jobId}.mp4`, // A placeholder URL
-        });
-    }
-    // --- End of placeholder ---
-});
-
+// Serve the frontend files (index.html, style.css, script.js)
+// Make sure these files are in a 'public' folder or in the same directory.
+app.use(express.static('public')); 
 
 app.listen(port, () => {
-  console.log(`AI Video Generator backend listening at http://localhost:${port}`);
+    console.log(`AI Video Generation server running at http://localhost:${port}`);
 });
