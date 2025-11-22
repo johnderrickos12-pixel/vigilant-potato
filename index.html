@@ -10,9 +10,9 @@
     <header>
         <nav>
             <div class="logo">
-                <h1>John Doe Photography</h1>
+                <h1>[Photographer Name]</h1>
             </div>
-            <ul class="nav-links">
+            <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#about">About</a></li>
@@ -24,7 +24,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h2>Capturing Moments, Creating Memories</h2>
-            <p>Passionate photographer specializing in portraits, landscapes, and events.</p>
+            <p>Stunning photography for every occasion.</p>
             <a href="#portfolio" class="btn">View My Work</a>
         </div>
     </section>
@@ -32,36 +32,54 @@
     <section id="portfolio" class="portfolio">
         <h2>My Portfolio</h2>
         <div class="gallery">
-            <img src="https://via.placeholder.com/400x300?text=Landscape+1" alt="Landscape Photo 1">
-            <img src="https://via.placeholder.com/400x300?text=Portrait+1" alt="Portrait Photo 1">
-            <img src="https://via.placeholder.com/400x300?text=Event+1" alt="Event Photo 1">
-            <img src="https://via.placeholder.com/400x300?text=Landscape+2" alt="Landscape Photo 2">
-            <img src="https://via.placeholder.com/400x300?text=Portrait+2" alt="Portrait Photo 2">
-            <img src="https://via.placeholder.com/400x300?text=Event+2" alt="Event Photo 2">
+            <!-- Example Portfolio Items -->
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Landscape" alt="Landscape Photography">
+                <div class="overlay">Landscape</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Portrait" alt="Portrait Photography">
+                <div class="overlay">Portrait</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Wedding" alt="Wedding Photography">
+                <div class="overlay">Wedding</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Event" alt="Event Photography">
+                <div class="overlay">Event</div>
+            </div>
+            <!-- Add more images here -->
         </div>
     </section>
 
     <section id="about" class="about">
         <div class="about-content">
             <h2>About Me</h2>
-            <p>Hello! I'm John Doe, a photographer with a keen eye for detail and a passion for capturing the beauty in everyday life. My journey into photography began several years ago, and since then, I've dedicated myself to honing my craft and creating stunning visual stories.</p>
-            <p>Whether it's the serene beauty of a landscape, the raw emotion in a portrait, or the vibrant energy of an event, I strive to create images that resonate with my clients and stand the test of time.</p>
+            <img src="https://via.placeholder.com/200x200?text=Photographer" alt="Photographer Name" class="profile-pic">
+            <p>Hi, I'm [Photographer Name], a passionate photographer with a keen eye for detail and a love for capturing the beauty in everyday life. My journey began [year] and since then, I've dedicated myself to telling stories through my lens.</p>
+            <p>Whether it's the grandeur of a landscape, the intimacy of a portrait, or the candid joy of an event, I strive to create timeless images that you'll cherish forever.</p>
         </div>
     </section>
 
     <section id="contact" class="contact">
         <h2>Get in Touch</h2>
-        <p>Ready to capture your special moments? Let's connect!</p>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
+        <p>Ready to capture your special moments? Contact me today!</p>
+        <form action="#" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
             <button type="submit" class="btn">Send Message</button>
         </form>
+        <div class="social-links">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Twitter</a>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2023 John Doe Photography. All rights reserved.</p>
+        <p>&copy; 2023 [Photographer Name]. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
